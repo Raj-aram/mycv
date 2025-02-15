@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cally - Instant Bookings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Smooth fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Floating Navbar */
+        .floating-nav {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 50;
+            transition: all 0.3s ease;
+        }
+        
+        /* Rewriting Animation */
+        .text-rewrite::after {
+            content: "JAVA/Python";
+            animation: rewrite 6s infinite;
+        }
+
+        @keyframes rewrite {
+            0%, 100% { content: "JAVA/Python"; }
+            33% { content: "Web Dev"; }
+            66% { content: "Backend"; }
+        }
+        
+        /* Glowing Cursor Effect */
+        .cursor-glow {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            background-color: #2ae98c;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #2ae98c;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* Multiple Glowing Particles */
+        .glow-particle {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            opacity: 0.8;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            transition: transform 0.05s ease-out;
+            animation: flicker 3s infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; box-shadow: 0 0 20px white; }
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sans">
+    <div class="cursor-glow"></div>
+    
+    <script>
+        const particleCount = 30;
+        for (let i = 0; i < particleCount; i++) {
+            let particle = document.createElement("div");
+            particle.classList.add("glow-particle");
+            particle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+            document.body.appendChild(particle);
+        }
+    </script>
+
+    <nav class="floating-nav flex justify-between items-center p-4 px-10">
+        <div class="text-lg font-bold flex items-center space-x-2">
+            <img src="https://static.vecteezy.com/system/resources/previews/006/371/033/original/r-black-and-white-alphabet-letter-logo-icon-design-with-red-dot-creative-template-for-company-and-business-vector.jpg" alt="Logo" class="w-6 h-6"> 
+            <span>Raja ji</span>
+        </div>
+        <div class="space-x-6 hidden md:flex">
+            <a href="#about" class="text-gray-300 hover:text-white">About</a>
+            <a href="#experience" class="text-gray-300 hover:text-white">Work Experience</a>
+            <a href="#projects" class="text-gray-300 hover:text-white">Projects</a>
+            <a href="#skills" class="text-gray-300 hover:text-white">Skills</a>
+        </div>
+        <button class="bg-green-500 px-4 py-2 rounded-full text-black">Get in touch</button>
+    </nav>
+
+    <div class="flex flex-row justify-between items-center min-h-screen px-10 pt-20">
+        <div class="w-1/2">
+            <p class="text-gray-400 fade-in">We work as per time</p>
+            <h1 class="text-5xl font-bold fade-in mt-4">
+                Raja ji main focus <span class="italic bg-white text-black px-2 rounded text-rewrite"></span> ONLY
+            </h1>
+            <p class="text-gray-400 fade-in mt-4 max-w-lg">
+                Hi there! I am a passionate Full-Stack Developer currently pursuing a B.Tech in Artificial Intelligence & Machine Learning. My primary tech stack revolves around Python, and I have worked on multiple projects with a strong focus on backend development.
+            </p>
+        </div>
+    </div>
+
+    <section id="experience" class="p-10">
+        <h2 class="text-3xl font-bold fade-in">Work Experience</h2>
+        <p class="text-gray-400 fade-in mt-2">Software Developer Intern at XYZ Company</p>
+        <p class="text-gray-400 fade-in">Worked on backend development using Python and Django.</p>
+    </section>
+
+    <section id="skills" class="p-10">
+        <h2 class="text-3xl font-bold fade-in">Skills</h2>
+        <ul class="list-disc list-inside text-gray-400 fade-in">
+            <li>Python, Java</li>
+            <li>HTML, CSS, JavaScript</li>
+            <li>Backend Development (Django, Flask)</li>
+            <li>Database Management (MySQL, MongoDB)</li>
+            <li>Machine Learning Basics</li>
+        </ul>
+    </section>
+
+    <script>
+        const cursorGlow = document.querySelector(".cursor-glow");
+        document.addEventListener("mousemove", (e) => {
+            cursorGlow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        });
+
+        const particles = document.querySelectorAll(".glow-particle");
+        document.addEventListener("mousemove", (e) => {
+            particles.forEach((particle, index) => {
+                setTimeout(() => {
+                    particle.style.transform = `translate(${e.clientX + Math.random() * 30 - 25}px, ${e.clientY + Math.random() * 30 - 25}px)`;
+                }, index * 10);
+            });
+        });
+    </script>
+</body>
+</html>
