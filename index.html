@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raja ji cv</title>
+    <title>Raja ji - Resume</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Smooth fade-in animation */
         .fade-in {
@@ -29,7 +30,7 @@
             transition: all 0.3s ease;
         }
         
-        /* Rewriting Animation */
+        /* Rewriting Animation for JAVA/Python */
         .text-rewrite::after {
             content: "JAVA/Python";
             animation: rewrite 6s infinite;
@@ -37,8 +38,8 @@
 
         @keyframes rewrite {
             0%, 100% { content: "JAVA/Python"; }
-            33% { content: "Web Dev"; }
-            66% { content: "Backend"; }
+            33% { content: "Backend"; }
+            66% { content: "Web Dev"; }
         }
         
         /* Glowing Cursor Effect */
@@ -70,6 +71,91 @@
             0% { opacity: 0.5; }
             100% { opacity: 1; box-shadow: 0 0 20px white; }
         }
+
+        /* Timeline styling */
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: #2ae98c;
+        }
+        .timeline-item {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 10px;
+            width: 12px;
+            height: 12px;
+            background: #2ae98c;
+            border-radius: 50%;
+        }
+
+        /* Progress bar animation */
+        @keyframes grow {
+            from { width: 0; }
+            to { width: var(--width, 0); }
+        }
+
+        /* Hover effect for sections and links */
+        .section-header:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+            text-shadow: 0 0 10px #00ffff;
+        }
+        a:hover, button:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        /* Parallax background */
+        body {
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+        }
+
+        /* GROK Animation for "Raja ji" Text */
+        .raja-ji-text {
+            display: flex;
+            gap: 10px;
+        }
+
+        .raja-ji-letter {
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.1);
+            position: relative;
+            transition: -webkit-text-stroke 0.3s ease-in-out;
+        }
+
+        .raja-ji-glow {
+            -webkit-text-stroke: 2px;
+            animation: colorCycle 1s linear infinite alternate;
+        }
+
+        @keyframes colorCycle {
+            0% { -webkit-text-stroke-color: #ff00ff; }
+            50% { -webkit-text-stroke-color: #00ffff; }
+            100% { -webkit-text-stroke-color: #ff00ff; }
+        }
+
+        /* Particle floating animation */
+        .glow-particle {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
     </style>
 </head>
 <body class="bg-black text-white font-sans">
@@ -83,51 +169,142 @@
             particle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
             document.body.appendChild(particle);
         }
+
+        // Function to spawn particles around sections
+        function spawnSectionParticles(sectionId, count = 10) {
+            const section = document.getElementById(sectionId);
+            for (let i = 0; i < count; i++) {
+                let particle = document.createElement("div");
+                particle.classList.add("glow-particle");
+                particle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                particle.style.left = `${Math.random() * section.offsetWidth}px`;
+                particle.style.top = `${Math.random() * section.offsetHeight}px`;
+                section.appendChild(particle);
+            }
+        }
+        spawnSectionParticles("skills", 15);
+        spawnSectionParticles("projects", 15);
     </script>
 
     <nav class="floating-nav flex justify-between items-center p-4 px-10">
         <div class="text-lg font-bold flex items-center space-x-2">
             <img src="https://static.vecteezy.com/system/resources/previews/006/371/033/original/r-black-and-white-alphabet-letter-logo-icon-design-with-red-dot-creative-template-for-company-and-business-vector.jpg" alt="Logo" class="w-6 h-6"> 
-            <span>Raja ji</span>
+            <div class="raja-ji-text">
+                <span class="raja-ji-letter">R</span>
+                <span class="raja-ji-letter">a</span>
+                <span class="raja-ji-letter">j</span>
+                <span class="raja-ji-letter">a</span>
+                <span> </span>
+                <span class="raja-ji-letter">j</span>
+                <span class="raja-ji-letter">i</span>
+            </div>
         </div>
         <div class="space-x-6 hidden md:flex">
-            <a href="#about" class="text-gray-300 hover:text-white">About</a>
-            <a href="#experience" class="text-gray-300 hover:text-white">Work Experience</a>
-            <a href="#projects" class="text-gray-300 hover:text-white">Projects</a>
-            <a href="#skills" class="text-gray-300 hover:text-white">Skills</a>
+            <a href="#about" class="text-gray-300 hover:text-white hover:scale-105 transition-transform">About</a>
+            <a href="#projects" class="text-gray-300 hover:text-white hover:scale-105 transition-transform">Projects</a>
+            <a href="#skills" class="text-gray-300 hover:text-white hover:scale-105 transition-transform">Skills</a>
+            <a href="#education" class="text-gray-300 hover:text-white hover:scale-105 transition-transform">Education</a>
+            <a href="#contact" class="text-gray-300 hover:text-white hover:scale-105 transition-transform">Contact</a>
         </div>
-        <button class="bg-green-500 px-4 py-2 rounded-full text-black">Get in touch</button>
+        <button class="bg-green-500 px-4 py-2 rounded-full text-black hover:scale-105 transition-transform">Fresher but works Like Experienced </button>
     </nav>
 
     <div class="flex flex-row justify-between items-center min-h-screen px-10 pt-20">
         <div class="w-1/2">
-            <p class="text-gray-400 fade-in">We work as per time</p>
+            <p class="text-gray-400 fade-in">As a fresher, I’m eager to learn</p>
             <h1 class="text-5xl font-bold fade-in mt-4">
-                Raja ji main focus <span class="italic bg-white text-black px-2 rounded text-rewrite"></span> ONLY
+                <div class="raja-ji-text inline-flex items-baseline">
+                    <span class="raja-ji-letter">R</span>
+                    <span class="raja-ji-letter">a</span>
+                    <span class="raja-ji-letter">j</span>
+                    <span class="raja-ji-letter">a</span>
+                    <span> </span>
+                    <span class="raja-ji-letter">j</span>
+                    <span class="raja-ji-letter">i</span>
+                </div>
+                main focus <span class="italic bg-white text-black px-2 rounded text-rewrite"></span> ONLY
             </h1>
             <p class="text-gray-400 fade-in mt-4 max-w-lg">
-                Hi there! I am a passionate Full-Stack Developer currently pursuing a B.Tech in Artificial Intelligence & Machine Learning. My primary tech stack revolves around Python, and I have worked on multiple projects with a strong focus on backend development.
+                Hi there! I am a passionate Full-Stack Developer and a fresher currently pursuing a B.Tech in Artificial Intelligence & Machine Learning. I specialize in backend development using Python and Java, and I’ve worked on multiple projects focusing on building robust backend systems.
             </p>
         </div>
     </div>
 
-    <section id="experience" class="p-10">
-        <h2 class="text-3xl font-bold fade-in">Work Experience</h2>
-        <p class="text-gray-400 fade-in mt-2">Software Developer Intern in Company</p>
-        <p class="text-gray-400 fade-in">Worked on backend development using Python and Django.</p>
+    <section id="projects" class="p-10">
+        <h2 class="text-3xl font-bold fade-in section-header">Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            <div class="p-4 bg-gray-800 rounded-lg fade-in delay-200">
+                <h3 class="text-xl font-semibold">E-commerce Backend API</h3>
+                <p class="text-gray-400">Developed a robust backend API for an e-commerce platform using Python (Django) and Java (Spring Boot), integrated with MongoDB.</p>
+                <p class="text-gray-300 mt-2">Technologies: Python, Java, Django, Spring Boot, MongoDB</p>
+            </div>
+            <div class="p-4 bg-gray-800 rounded-lg fade-in delay-400">
+                <h3 class="text-xl font-semibold">Task Management System</h3>
+                <p class="text-gray-400">Built a backend-driven task management system using Python (Flask) and Java, with MySQL for data storage.</p>
+                <p class="text-gray-300 mt-2">Technologies: Python, Java, Flask, MySQL</p>
+            </div>
+            <div class="p-4 bg-gray-800 rounded-lg fade-in delay-600">
+                <h3 class="text-xl font-semibold">Chatbot Backend</h3>
+                <p class="text-gray-400">Created a backend for an AI-powered chatbot using Python and Java, utilizing TensorFlow for machine learning integration.</p>
+                <p class="text-gray-300 mt-2">Technologies: Python, Java, TensorFlow, Flask</p>
+            </div>
+        </div>
     </section>
 
     <section id="skills" class="p-10">
-        <h2 class="text-3xl font-bold fade-in">Skills</h2>
-        <ul class="list-disc list-inside text-gray-400 fade-in">
-            <li>Python, Java</li>
-            <li>HTML, CSS, JavaScript</li>
-            <li>Backend Development (Django, Flask)</li>
-            <li>Database Management (MySQL, MongoDB)</li>
-            <li>Machine Learning Basics</li>
-        </ul>
+        <h2 class="text-3xl font-bold fade-in section-header">Skills</h2>
+        <div class="mt-4 space-y-4">
+            <div class="flex items-center gap-4 fade-in">
+                <span class="text-gray-400 w-24">Python</span>
+                <div class="w-full bg-gray-700 rounded-full h-2">
+                    <div class="bg-green-500 h-2 rounded-full" style="width: 85%; animation: grow 1s ease-out;"></div>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 fade-in delay-200">
+                <span class="text-gray-400 w-24">Java</span>
+                <div class="w-full bg-gray-700 rounded-full h-2">
+                    <div class="bg-green-500 h-2 rounded-full" style="width: 80%; animation: grow 1s ease-out;"></div>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 fade-in delay-400">
+                <span class="text-gray-400 w-24">HTML/CSS</span>
+                <div class="w-full bg-gray-700 rounded-full h-2">
+                    <div class="bg-green-500 h-2 rounded-full" style="width: 70%; animation: grow 1s ease-out;"></div>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 fade-in delay-600">
+                <span class="text-gray-400 w-24">JavaScript</span>
+                <div class="w-full bg-gray-700 rounded-full h-2">
+                    <div class="bg-green-500 h-2 rounded-full" style="width: 75%; animation: grow 1s ease-out;"></div>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 fade-in delay-800">
+                <span class="text-gray-400 w-24">Backend Dev</span>
+                <div class="w-full bg-gray-700 rounded-full h-2">
+                    <div class="bg-green-500 h-2 rounded-full" style="width: 90%; animation: grow 1s ease-out;"></div>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <section id="education" class="p-10">
+        <h2 class="text-3xl font-bold fade-in section-header">Education</h2>
+        <p class="text-gray-400 fade-in mt-2">B.Tech in Artificial Intelligence & Machine Learning</p>
+        <p class="text-gray-400">Rgpv University, 2024 - 2028</p>
+        <p class="text-gray-300 mt-2">CGPA: Na/10</p>
+    </section>
+
+    <section id="contact" class="p-10 bg-gray-900">
+        <h2 class="text-3xl font-bold fade-in section-header">Contact Me</h2>
+        <p class="text-gray-400 fade-in mt-2">Email: mishraritul225@gmail.com</p>
+        <p class="text-gray-400">Phone: 864021846</p>
+        <div class="mt-4 space-x-4">
+            <a href="https://linkedin.com/in/ritul-mishra" class="text-gray-300 hover:text-white hover:scale-105 transition-transform">LinkedIn</a>
+            <a href="https://github.com/raj-aram" class="text-gray-300 hover:text-white hover:scale-105 transition-transform">GitHub</a>
+            
+        </div>
+    </section>
+>
     <script>
         const cursorGlow = document.querySelector(".cursor-glow");
         document.addEventListener("mousemove", (e) => {
@@ -140,6 +317,25 @@
                 setTimeout(() => {
                     particle.style.transform = `translate(${e.clientX + Math.random() * 30 - 25}px, ${e.clientY + Math.random() * 30 - 25}px)`;
                 }, index * 10);
+            });
+        });
+
+        // Add mouse interaction for all "Raja ji" animations
+        document.addEventListener("mousemove", (event) => {
+            const letters = document.querySelectorAll(".raja-ji-letter");
+            
+            letters.forEach((letter) => {
+                const rect = letter.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+
+                const distance = Math.hypot(event.clientX - centerX, event.clientY - centerY);
+
+                if (distance < 150) {
+                    letter.classList.add("raja-ji-glow");
+                } else {
+                    letter.classList.remove("raja-ji-glow");
+                }
             });
         });
     </script>
